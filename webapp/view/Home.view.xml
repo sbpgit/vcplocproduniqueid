@@ -1,0 +1,89 @@
+<mvc:View controllerName="vcpapp.vcplocproduniqid.controller.Home"
+    xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" displayBlock="true" 
+    xmlns="sap.m" xmlns:m="sap.m" xmlns:l="sap.ui.layout" 
+    xmlns:ux="sap.uxap" 
+    xmlns:f="sap.ui.layout.form" 
+    xmlns:html="http://www.w3.org/1999/xhtml" 
+    xmlns:u = "sap.ui.unified">
+    <Page id="_IDGenPage1" showHeader="false" showFooter="true" enableScrolling="false">
+        <content>
+   <ux:ObjectPageLayout id="ObjectPageLayout" headerContentPinned="true">
+        <ux:headerTitle>
+            <ux:ObjectPageDynamicHeaderTitle>
+                <ux:expandedHeading>
+                    <HBox>
+                        <Title text="{i18n>title}" class="boldText" titleAlignment="Center" wrapping="true" />
+                    </HBox>
+                </ux:expandedHeading>
+                <ux:snappedHeading>
+                    <HBox fitContainer="true" alignItems="Center">
+                        <Title text="{i18n>title}" wrapping="true" />
+                    </HBox>
+                </ux:snappedHeading>
+                <ux:navigationActions>
+                            <Button class="classHdr" icon="sap-icon://sys-help" id="idNav3" press="onNavPress" type="Emphasized" tooltip="Help Document" />
+                        </ux:navigationActions>
+            </ux:ObjectPageDynamicHeaderTitle>
+        </ux:headerTitle>
+        <ux:headerContent>
+            <FlexBox wrap="Wrap" fitContainer="true">
+                <l:Grid defaultSpan="XL4 L3 M6 S12">
+                <HBox>
+                <VBox>
+                <Label text="" />
+                 <SearchField id="headtabSearch" liveChange="handleSearch" placeholder="Unique/Primary ID" width="300px"/>     
+                </VBox>
+                    <VBox class="locClass">
+                        <Label text="Location" required="true" width="250px"/>
+                        <Input id="PDFlocInput" width="250px" placeholder="Location" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="handleValueHelp" />
+                    </VBox>
+                    <VBox class="VBoxWidth">
+                        <Label text="Configurable Product" required="true" width="300px"/>
+                         <MultiInput width="300px" id="PDFprodInput" placeholder="Product" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="handleValueHelp" tokenUpdate="handleTokenUpdate" enabled="true" />
+                    </VBox>
+                    <HBox class="VBoxWidth1">
+                    <VBox >
+                        <Label text="" />
+                           <Button id="idBtnSubmit" visible="true" type="Emphasized" text="Submit"  press="onSubmitPress" width="auto" enabled="true" /> 
+                    </VBox>
+                    <VBox >
+                        <Label text="" />
+                            <Button id="idBtnReject" visible="true" type="Reject" text="Reset" class="rejectbtn" press="onCancelPress" width="auto" enabled="true" />
+                    </VBox>
+                    </HBox>
+                    </HBox>
+                </l:Grid>
+            </FlexBox>
+        </ux:headerContent>
+        <ux:sections>
+            <ux:ObjectPageSection>
+                <ux:subSections>
+                    <ux:ObjectPageSubSection>
+                        <ux:blocks>
+                    <Table id="idChars" items="{path: '/setChars'}" sticky="ColumnHeaders" growingThreshold="1000" growingScrollToLoad="true" growing="true" mode="None" >
+                    <columns>
+                    <Column id="_IDGenColumn11" hAlign="Center" vAlign="Middle">
+                        <Text id="_IDGenText11" text="Unique ID" />
+                    </Column>
+                    <Column id="_IDGenColumn22" hAlign="Center" vAlign="Middle">
+                        <Text id="_IDGenText22" text="Primary ID"/>
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem id="_IDGenColumnListItem11">
+                        <cells>
+                            <ObjectIdentifier  text="{UNIQUE_ID}" />
+                            <ObjectIdentifier  text="{PRIMARY_ID}"/>
+                        </cells>
+                    </ColumnListItem>
+                </items>
+                    </Table>
+       </ux:blocks>
+                    </ux:ObjectPageSubSection>
+                </ux:subSections>
+            </ux:ObjectPageSection>
+        </ux:sections>
+    </ux:ObjectPageLayout>
+     </content>
+    </Page>
+</mvc:View>
