@@ -1,6 +1,6 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
 	<SelectDialog id="LocSlctListJS" title="Locations" search="handleSearch" liveChange="handleSearch" rememberSelections="false"
-		confirm="handleSelection" cancel="handleClose" items="{/Locitems}">
+		confirm="handleSelection" cancel="handleClose" items="{path:'/Locitems', sorter:{path:'LOCATION_ID'}}">
 		<StandardListItem title="{LOCATION_ID}" description="{LOCATION_DESC}" type="Active"/>
 	</SelectDialog>
 </core:FragmentDefinition>

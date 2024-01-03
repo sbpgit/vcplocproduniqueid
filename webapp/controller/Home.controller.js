@@ -52,10 +52,16 @@ sap.ui.define([
                  this.oLocList = this._oCore.byId(
                      this._valueHelpDialogLoc.getId() + "-list"
                  );
-                 this.getOwnerComponent().getModel("BModel").read("/getLocation", {
+                 this.getOwnerComponent().getModel("BModel").read("/getLocProdSalesH", {
+                    method: "GET",
+                    urlParameters: {
+                        Flag: "X",
+                        LOCATION_ID:"",
+                        PRODUCT_ID:""
+                    },
                     success: function (oData) {
-                        sap.ui.core.BusyIndicator.hide();
-                        that.LocData = oData.results;
+                        that.totalData = oData.results;
+                        that.LocData = that.removeDuplicate(oData.results,"LOCATION_ID");
                         that.locModel.setData({
                             Locitems: that.LocData
                         });
@@ -146,26 +152,28 @@ sap.ui.define([
                     that.oProd.removeAllTokens();
                     var aSelectedLoc = oEvent.getParameter("selectedItems");
                     that.oLoc.setValue(aSelectedLoc[0].getTitle());
-                    that.getOwnerComponent().getModel("BModel").read("/getLocProdDet", {
-                        filters: [
-                            new Filter(
-                                "LOCATION_ID",
-                                FilterOperator.EQ,
-                                that.oLoc.getValue()
-                            ),
-                        ],
-                        success: function (oData) {
-                            that.prodData = oData.results;
+                    let aData = that.totalData.filter(f => f.LOCATION_ID == aSelectedLoc[0].getTitle() );
+                    // that.getOwnerComponent().getModel("BModel").read("/getLocProdDet", {
+                    //     filters: [
+                    //         new Filter(
+                    //             "LOCATION_ID",
+                    //             FilterOperator.EQ,
+                    //             that.oLoc.getValue()
+                    //         ),
+                    //     ],
+                    //     success: function (oData) {
+                            that.prodData = that.removeDuplicate(aData,"PRODUCT_ID");
                             that.prodModel.setData({ prodDetails: that.prodData });
                             that.oProductList.setModel(that.prodModel);
-                            that.byId("PDFprodInput").setEnabled(true);
+                            that.oTabtModel.setData({setChars:[]});
+                            that.byId("idChars").setModel(that.oTabtModel); 
                             sap.ui.core.BusyIndicator.hide();
-                        },
-                        error: function (oData, error) {
-                            sap.ui.core.BusyIndicator.hide();
-                            MessageToast.show("error");
-                        },
-                    });
+                    //     },
+                    //     error: function (oData, error) {
+                    //         sap.ui.core.BusyIndicator.hide();
+                    //         MessageToast.show("error");
+                    //     },
+                    // });
                 }
                 else if (SID.includes("prodSlctListJS")) {
                     var aSelectedProd;
@@ -181,6 +189,8 @@ sap.ui.define([
                             })
                         );
                     });
+                    that.oTabtModel.setData({setChars:[]});
+                    that.byId("idChars").setModel(that.oTabtModel); 
                     sap.ui.core.BusyIndicator.hide();
                 }
             },
@@ -203,19 +213,13 @@ sap.ui.define([
                     selectedProd1 !== "") {
                     var selectedProd = that.byId("PDFprodInput").getTokens()[0].getText();
                     var selectedLoc = that.byId("PDFlocInput").getValue();
-                    that.getOwnerComponent().getModel("BModel").read("/getSalesHM", {
-                        filters: [
-                            new Filter(
-                                "LOCATION_ID",
-                                FilterOperator.EQ,
-                                selectedLoc
-                            ),
-                            new Filter(
-                                "PRODUCT_ID",
-                                FilterOperator.EQ,
-                                selectedProd
-                            )
-                        ],
+                    that.getOwnerComponent().getModel("BModel").read("/getLocProdSalesH", {
+                        method: "GET",
+                        urlParameters: {
+                            Flag: "Y",
+                            LOCATION_ID:selectedLoc,
+                            PRODUCT_ID:selectedProd
+                        },
                         success: function (oData) {
                             that.selectedChars = [];
                             if (oData.results.length > 0) {
