@@ -52,13 +52,7 @@ sap.ui.define([
                  this.oLocList = this._oCore.byId(
                      this._valueHelpDialogLoc.getId() + "-list"
                  );
-                 this.getOwnerComponent().getModel("BModel").read("/getLocProdSalesH", {
-                    method: "GET",
-                    urlParameters: {
-                        Flag: "X",
-                        LOCATION_ID:"",
-                        PRODUCT_ID:""
-                    },
+                 this.getOwnerComponent().getModel("BModel").read("/genPartialProd", {                   
                     success: function (oData) {
                         that.totalData = oData.results;
                         that.LocData = that.removeDuplicate(oData.results,"LOCATION_ID");
@@ -213,6 +207,7 @@ sap.ui.define([
                     selectedProd1 !== "") {
                     var selectedProd = that.byId("PDFprodInput").getTokens()[0].getText();
                     var selectedLoc = that.byId("PDFlocInput").getValue();
+                    // let uniqueData = that.totalData.filter(f => f.LOCATION_ID ==selectedLoc && f.PRODUCT_ID == selectedProd );
                     that.getOwnerComponent().getModel("BModel").read("/getLocProdSalesH", {
                         method: "GET",
                         urlParameters: {

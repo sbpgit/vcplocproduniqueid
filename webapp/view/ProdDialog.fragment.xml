@@ -1,6 +1,6 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
 	<SelectDialog id="prodSlctListJS" title="Products" rememberSelections="false" search="handleSearch" liveChange="handleSearch"
-		confirm="handleSelection" cancel="handleClose" multiSelect="false"  contentWidth="320px" items="{path:'/prodDetails',sorter:{path:'PRODUCT_ID'} }" 
+		confirm="handleSelection" cancel="handleClose" multiSelect="false"  contentWidth="400px" items="{path:'/prodDetails',sorter:{path:'PRODUCT_ID'} }" 
         selectionChange="handleProdChange" growing="false">
 		<StandardListItem title="{PRODUCT_ID}" description="{PROD_DESC}" type="Active"/>
 	</SelectDialog>

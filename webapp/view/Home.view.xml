@@ -60,7 +60,7 @@
                 <ux:subSections>
                     <ux:ObjectPageSubSection>
                         <ux:blocks>
-                    <Table id="idChars" items="{path: '/setChars'}" sticky="ColumnHeaders" growingThreshold="1000" growingScrollToLoad="true" growing="true" mode="None" >
+                    <Table id="idChars" items="{path: '/setChars',sorter:{path:'UNIQUE_ID'} }" sticky="ColumnHeaders" growingThreshold="1000" growingScrollToLoad="true" growing="true" mode="None" >
                     <columns>
                     <Column id="_IDGenColumn11" hAlign="Center" vAlign="Middle">
                         <Text id="_IDGenText11" text="Unique ID" />
