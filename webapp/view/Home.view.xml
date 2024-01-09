@@ -68,16 +68,16 @@
                     <Column id="_IDGenColumn22" hAlign="Center" vAlign="Middle">
                         <Text id="_IDGenText22" text="Primary ID"/>
                     </Column>
-                     <Column id="_IDGenColumn23" hAlign="Center" vAlign="Middle">
+                     <!-- <Column id="_IDGenColumn23" hAlign="Center" vAlign="Middle">
                         <Text id="_IDGenText23" text="Unique Description"/>
-                    </Column>
+                    </Column> -->
                 </columns>
                 <items>
                     <ColumnListItem id="_IDGenColumnListItem11">
                         <cells>
-                            <ObjectIdentifier  text="{UNIQUE_ID}" />
-                            <ObjectIdentifier  text="{PRIMARY_ID}"/>
-                            <ObjectIdentifier  text="{UNIQUE_DESC}"/>
+                            <ObjectIdentifier  title="{UNIQUE_ID}" text="{UNIQUE_DESC}"/>
+                            <ObjectIdentifier  title="{PRIMARY_ID}"/>
+                            <!-- <ObjectIdentifier  text="{UNIQUE_DESC}"/> -->
                         </cells>
                     </ColumnListItem>
                 </items>
