@@ -60,14 +60,17 @@
                 <ux:subSections>
                     <ux:ObjectPageSubSection>
                         <ux:blocks>
-                    <Table id="idChars" items="{path: '/setChars',sorter:{path:'UNIQUE_ID'} }" sticky="ColumnHeaders" growingThreshold="1000" growingScrollToLoad="true" growing="true" mode="None" >
+                    <Table id="idChars" items="{path: '/setChars',sorter:{path:'PRIMARY_ID',group:true} }" sticky="ColumnHeaders" 
+                    rememberSelections="false" growingThreshold="1000" growingScrollToLoad="true" growing="true" 
+                    mode="SingleSelectMaster" selectionChange="onUniqueIdPress" >
                     <columns>
+                     <Column id="_IDGenColumn22" hAlign="Center" vAlign="Middle" >
+                        <Text id="_IDGenText22" text="Primary ID"/>
+                    </Column>
                     <Column id="_IDGenColumn11" hAlign="Center" vAlign="Middle">
                         <Text id="_IDGenText11" text="Unique ID" />
                     </Column>
-                    <Column id="_IDGenColumn22" hAlign="Center" vAlign="Middle">
-                        <Text id="_IDGenText22" text="Primary ID"/>
-                    </Column>
+                   
                      <!-- <Column id="_IDGenColumn23" hAlign="Center" vAlign="Middle">
                         <Text id="_IDGenText23" text="Unique Description"/>
                     </Column> -->
@@ -75,8 +78,9 @@
                 <items>
                     <ColumnListItem id="_IDGenColumnListItem11">
                         <cells>
+                        <ObjectIdentifier  title="{PRIMARY_ID}"/>
                             <ObjectIdentifier  title="{UNIQUE_ID}" text="{UNIQUE_DESC}"/>
-                            <ObjectIdentifier  title="{PRIMARY_ID}"/>
+                            
                             <!-- <ObjectIdentifier  text="{UNIQUE_DESC}"/> -->
                         </cells>
                     </ColumnListItem>

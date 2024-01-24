@@ -25,6 +25,8 @@ sap.ui.define([
                 this.locModel.setSizeLimit(5000);
                 this.prodModel = new JSONModel();
                 this.prodModel.setSizeLimit(5000);
+                this.oCharModel =new JSONModel();
+                this.oCharModel.setSizeLimit(5000);
             },
             onAfterRendering: function () {
                 sap.ui.core.BusyIndicator.show();
@@ -46,6 +48,13 @@ sap.ui.define([
                      );
                      this.getView().addDependent(this._valueHelpDialogProd);
                  }
+                 if (!this._valueHelpDialogChar) {
+                    this._valueHelpDialogChar = sap.ui.xmlfragment(
+                        "vcpapp.vcplocproduniqid.view.Characteristics",
+                        this
+                    );
+                    this.getView().addDependent(this._valueHelpDialogChar);
+                }
                  this.oProductList = this._oCore.byId(
                      this._valueHelpDialogProd.getId() + "-list"
                  );
@@ -137,6 +146,22 @@ sap.ui.define([
                         );
                     }
                     that.oProductList.getBinding("items").filter(oFilters);
+                }
+                else if(sId.includes("idCharSearch")){
+                    if (sQuery !== "") {
+                        oFilters.push(
+                            new Filter({
+                                filters: [
+                                    new Filter("CHAR_NAME", FilterOperator.Contains, sQuery),
+                                    new Filter("CHAR_DESC", FilterOperator.Contains, sQuery),
+                                    new Filter("CHAR_VALUE", FilterOperator.Contains, sQuery),
+                                    new Filter("CHARVAL_DESC", FilterOperator.Contains, sQuery),
+                                ],
+                                and: false,
+                            })
+                        );
+                    }
+                    sap.ui.getCore().byId("idMatvarItem").getBinding("items").filter(oFilters);
                 }
             },
             handleSelection: function (oEvent) {
@@ -261,6 +286,44 @@ sap.ui.define([
                     // //Navigate to second app
                     sap.m.URLHelper.redirect(url, true);
                 }
+            },
+            onUniqueIdPress:function(oEvent){
+                sap.ui.core.BusyIndicator.show();
+                var selectedItem = oEvent.getParameters().listItems[0].getCells()[1].getTitle();
+                var selectedProduct = that.byId("PDFprodInput").getTokens()[0].getText();
+                that.getOwnerComponent().getModel("BModel").read("/getUniqueItem", {
+                    filters: [
+                        // new Filter("LOCATION_ID", FilterOperator.EQ, sLocId),
+                        new Filter("PRODUCT_ID", FilterOperator.EQ, selectedProduct),
+                        new Filter("UNIQUE_ID", FilterOperator.EQ, selectedItem),
+                    ],
+                    success: function (oData) {                        
+                        // oGModel.setProperty("/CharData", oData.results);
+                        that.oCharModel.setData({
+                            resultsChar: oData.results,
+                        });
+                        if (!that._valueHelpDialogChar) {
+                            that._valueHelpDialogChar = sap.ui.xmlfragment(
+                                "vcpapp.vcplocproduniqid.view.Characteristics",
+                                that
+                            );
+                            that.getView().addDependent(that._valueHelpDialogChar);
+                        }                        
+                        sap.ui.getCore().byId("idMatvarItem").setModel(that.oCharModel);
+                        that._valueHelpDialogChar.open();
+                        sap.ui.core.BusyIndicator.hide();
+                    },
+                    error: function () {
+                        sap.ui.core.BusyIndicator.hide();
+                        MessageToast.show("No data");
+                    },
+                });
+            },
+            onCloseDesc:function(){
+                sap.ui.getCore().byId("idCharSearch").setValue("");
+                that._valueHelpDialogChar.destroy();
+                that._valueHelpDialogChar="";
+                that.byId("idChars").removeSelections();
             }
         });
     });
