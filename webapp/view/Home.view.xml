@@ -62,7 +62,7 @@
                         <ux:blocks>
                     <Table id="idChars" items="{path: '/setChars',sorter:{path:'PRIMARY_ID',group:true} }" sticky="ColumnHeaders" 
                     rememberSelections="false" growingThreshold="1000" growingScrollToLoad="true" growing="true" 
-                    mode="SingleSelectMaster" selectionChange="onUniqueIdPress" >
+                    mode="None" >
                     <columns>
                      <Column id="_IDGenColumn22" hAlign="Center" vAlign="Middle" >
                         <Text id="_IDGenText22" text="Primary ID"/>
@@ -78,8 +78,11 @@
                 <items>
                     <ColumnListItem id="_IDGenColumnListItem11">
                         <cells>
-                        <ObjectIdentifier  title="{PRIMARY_ID}"/>
-                            <ObjectIdentifier  title="{UNIQUE_ID}" text="{UNIQUE_DESC}"/>
+                        <Link  text="{PRIMARY_ID}" press="onUniqueIdPress"/>
+                        <VBox>
+                            <Link  text="{UNIQUE_ID}" press="onUniqueIdPress"/>
+                            <ObjectIdentifier text="{UNIQUE_DESC}"></ObjectIdentifier>
+                            </VBox>
                             
                             <!-- <ObjectIdentifier  text="{UNIQUE_DESC}"/> -->
                         </cells>

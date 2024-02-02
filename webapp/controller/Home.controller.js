@@ -289,7 +289,8 @@ sap.ui.define([
             },
             onUniqueIdPress:function(oEvent){
                 sap.ui.core.BusyIndicator.show();
-                var selectedItem = oEvent.getParameters().listItems[0].getCells()[1].getTitle();
+                // var selectedItem = oEvent.getParameters().listItems[0].getCells()[1].getTitle();
+                var selectedItem = oEvent.getSource().getText();
                 var selectedProduct = that.byId("PDFprodInput").getTokens()[0].getText();
                 that.getOwnerComponent().getModel("BModel").read("/getUniqueItem", {
                     filters: [
