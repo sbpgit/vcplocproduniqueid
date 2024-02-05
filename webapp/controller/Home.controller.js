@@ -295,7 +295,7 @@ sap.ui.define([
                 that.getOwnerComponent().getModel("BModel").read("/getUniqueItem", {
                     filters: [
                         // new Filter("LOCATION_ID", FilterOperator.EQ, sLocId),
-                        new Filter("PRODUCT_ID", FilterOperator.EQ, selectedProduct),
+                        // new Filter("PRODUCT_ID", FilterOperator.EQ, selectedProduct),
                         new Filter("UNIQUE_ID", FilterOperator.EQ, selectedItem),
                     ],
                     success: function (oData) {                        
