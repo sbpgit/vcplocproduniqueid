@@ -172,27 +172,12 @@ sap.ui.define([
                     var aSelectedLoc = oEvent.getParameter("selectedItems");
                     that.oLoc.setValue(aSelectedLoc[0].getTitle());
                     let aData = that.totalData.filter(f => f.LOCATION_ID == aSelectedLoc[0].getTitle() );
-                    // that.getOwnerComponent().getModel("BModel").read("/getLocProdDet", {
-                    //     filters: [
-                    //         new Filter(
-                    //             "LOCATION_ID",
-                    //             FilterOperator.EQ,
-                    //             that.oLoc.getValue()
-                    //         ),
-                    //     ],
-                    //     success: function (oData) {
                             that.prodData = that.removeDuplicate(aData,"PRODUCT_ID");
                             that.prodModel.setData({ prodDetails: that.prodData });
                             that.oProductList.setModel(that.prodModel);
                             that.oTabtModel.setData({setChars:[]});
                             that.byId("idChars").setModel(that.oTabtModel); 
                             sap.ui.core.BusyIndicator.hide();
-                    //     },
-                    //     error: function (oData, error) {
-                    //         sap.ui.core.BusyIndicator.hide();
-                    //         MessageToast.show("error");
-                    //     },
-                    // });
                 }
                 else if (SID.includes("prodSlctListJS")) {
                     var aSelectedProd;
