@@ -217,7 +217,6 @@ sap.ui.define([
                     selectedProd1 !== "") {
                     var selectedProd = that.byId("PDFprodInput").getTokens()[0].getText();
                     var selectedLoc = that.byId("PDFlocInput").getValue();
-                    // let uniqueData = that.totalData.filter(f => f.LOCATION_ID ==selectedLoc && f.PRODUCT_ID == selectedProd );
                     that.getOwnerComponent().getModel("BModel").read("/getLocProdSalesH", {
                         method: "GET",
                         urlParameters: {
