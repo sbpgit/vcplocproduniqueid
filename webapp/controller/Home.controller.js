@@ -103,22 +103,7 @@ sap.ui.define([
                     oFilters = [];
                 // Check if search filter is to be applied
                 sQuery = sQuery ? sQuery.trim() : "";
-                // Product
-                if (sId.includes("Loc")) {
-                    if (sQuery !== "") {
-                        oFilters.push(
-                            new Filter({
-                                filters: [
-                                    new Filter("LOCATION_ID", FilterOperator.Contains, sQuery),
-                                    new Filter("LOCATION_DESC",FilterOperator.Contains,sQuery)
-                                ],
-                                and: false,
-                            })
-                        );
-                    }
-                    that.oLocList.getBinding("items").filter(oFilters);                  
-                }
-                else if(sId.includes("headtabSearch")){
+                if(sId.includes("application")){
                     if (sQuery !== "") {
                         oFilters.push(
                             new Filter({
@@ -131,6 +116,21 @@ sap.ui.define([
                         );
                     }
                     that.byId("idChars").getBinding("items").filter(oFilters);
+                }
+                // Location
+                else if (sId.includes("Loc")) {
+                    if (sQuery !== "") {
+                        oFilters.push(
+                            new Filter({
+                                filters: [
+                                    new Filter("LOCATION_ID", FilterOperator.Contains, sQuery),
+                                    new Filter("LOCATION_DESC",FilterOperator.Contains,sQuery)
+                                ],
+                                and: false,
+                            })
+                        );
+                    }
+                    that.oLocList.getBinding("items").filter(oFilters);                  
                 }
                   // Product
                  else if (sId.includes("prod")) {
