@@ -228,6 +228,7 @@ sap.ui.define([
                     // var selectedLoc = that.byId("PDFlocInput").getValue();
                     that.getOwnerComponent().getModel("BModel").read("/getLocProdSalesH", {
                         method: "GET",
+                        // filters: [new Filter("PRODUCT_ID", FilterOperator.EQ, selectedProd)],
                         urlParameters: {
                             Flag: "Y",
                             PRODUCT_ID:selectedProd
@@ -236,6 +237,7 @@ sap.ui.define([
                             that.selectedChars = [];
                             if (oData.results.length > 0) {
                                 that.uniqId = that.removeDuplicate(oData.results,'UNIQUE_ID');
+                                // that.uniqId=oData.results;
                                 that.uniqId.forEach(function(obj) {
                                     obj.UNIQUE_ID = obj.UNIQUE_ID.toString();
                                     obj.PRIMARY_ID = obj.PRIMARY_ID.toString();

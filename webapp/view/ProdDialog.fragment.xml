@@ -2,6 +2,6 @@
 	<SelectDialog id="prodSlctListJS" title="Products" rememberSelections="false" search="handleSearch" liveChange="handleSearch"
 		confirm="handleSelection" cancel="handleClose" multiSelect="false"  contentWidth="375px" items="{path:'/prodDetails',sorter:{path:'PRODUCT_ID'} }" 
         selectionChange="handleProdChange" growing="false">
-		<StandardListItem title="{PRODUCT_ID}" description="{PROD_DESC}" type="Active"/>
+		<StandardListItem title="{PRODUCT_ID}" description="{PROD_DESC}" info="{REF_PRODID}" type="Active"/>
 	</SelectDialog>
 </core:FragmentDefinition>
