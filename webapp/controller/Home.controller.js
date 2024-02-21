@@ -30,7 +30,7 @@ sap.ui.define([
             },
             onAfterRendering: function () {
                 sap.ui.core.BusyIndicator.show();
-                that.oLoc = this.byId("PDFlocInput");
+                // that.oLoc = this.byId("PDFlocInput");
                 that.oProd = this.byId("PDFprodInput");
                  // Declaring fragments
                  this._oCore = sap.ui.getCore();
@@ -64,11 +64,11 @@ sap.ui.define([
                  this.getOwnerComponent().getModel("BModel").read("/genPartialProd", {                   
                     success: function (oData) {
                         that.totalData = oData.results;
-                        that.LocData = that.removeDuplicate(oData.results,"LOCATION_ID");
-                        that.locModel.setData({
-                            Locitems: that.LocData
-                        });
-                        that.oLocList.setModel(that.locModel);
+                        // that.LocData = that.removeDuplicate(oData.results,"LOCATION_ID");
+                        // that.locModel.setData({
+                        //     Locitems: that.LocData
+                        // });
+                        // that.oLocList.setModel(that.locModel);
                         sap.ui.core.BusyIndicator.hide();
                     },
                     error: function (oData, error) {
@@ -87,12 +87,20 @@ sap.ui.define([
                     that._valueHelpDialogLoc.open();
                 }
                 else if (sId.includes("PDFprodInput")) {
-                    if (this.byId("PDFlocInput").getValue()) {
-                        that._valueHelpDialogProd.open();
-                    }
-                    else {
-                        MessageToast.show("Select Location");
-                    }
+                    let aData = that.totalData;
+                    that.prodData = that.removeDuplicate(aData,"PRODUCT_ID");
+                    that.prodModel.setData({ prodDetails: that.prodData });
+                    that.oProductList.setModel(that.prodModel);
+                    that.oTabtModel.setData({setChars:[]});
+                    that.byId("idChars").setModel(that.oTabtModel); 
+                    sap.ui.core.BusyIndicator.hide();
+                    // if (this.byId("PDFlocInput").getValue()) {
+                    //     that._valueHelpDialogProd.open();
+                    // }
+                    // else {
+                    //     MessageToast.show("Select Location");
+                    // }
+                    that._valueHelpDialogProd.open();
                 }
 
             },
@@ -167,19 +175,20 @@ sap.ui.define([
             handleSelection: function (oEvent) {
                 sap.ui.core.BusyIndicator.show();
                 var SID = oEvent.getSource().getId();
-                if (SID.includes("LocSlctListJS")) {
-                    that.oProd.removeAllTokens();
-                    var aSelectedLoc = oEvent.getParameter("selectedItems");
-                    that.oLoc.setValue(aSelectedLoc[0].getTitle());
-                    let aData = that.totalData.filter(f => f.LOCATION_ID == aSelectedLoc[0].getTitle() );
-                            that.prodData = that.removeDuplicate(aData,"PRODUCT_ID");
-                            that.prodModel.setData({ prodDetails: that.prodData });
-                            that.oProductList.setModel(that.prodModel);
-                            that.oTabtModel.setData({setChars:[]});
-                            that.byId("idChars").setModel(that.oTabtModel); 
-                            sap.ui.core.BusyIndicator.hide();
-                }
-                else if (SID.includes("prodSlctListJS")) {
+                // if (SID.includes("LocSlctListJS")) {
+                //     that.oProd.removeAllTokens();
+                //     var aSelectedLoc = oEvent.getParameter("selectedItems");
+                //     that.oLoc.setValue(aSelectedLoc[0].getTitle());
+                //     let aData = that.totalData.filter(f => f.LOCATION_ID == aSelectedLoc[0].getTitle() );
+                //             that.prodData = that.removeDuplicate(aData,"PRODUCT_ID");
+                //             that.prodModel.setData({ prodDetails: that.prodData });
+                //             that.oProductList.setModel(that.prodModel);
+                //             that.oTabtModel.setData({setChars:[]});
+                //             that.byId("idChars").setModel(that.oTabtModel); 
+                //             sap.ui.core.BusyIndicator.hide();
+                // }
+                // else
+                if (SID.includes("prodSlctListJS")) {
                     var aSelectedProd;
                     aSelectedProd = oEvent.getParameter("selectedItems");
                     that.oProd.removeAllTokens();
@@ -199,29 +208,28 @@ sap.ui.define([
                 }
             },
             onCancelPress: function () {
-                that.oLoc.setValue();
+                // that.oLoc.setValue();
                 that.oProd.removeAllTokens();
                 that.oTabtModel.setData({ setChars: [] });
-                that.byId("idChars").setModel(that.oCharModel1);
+                that.byId("idChars").setModel(that.oTabtModel);
                 that.byId("headtabSearch").setValue();
             },
             onSubmitPress: function () {
                 sap.ui.core.BusyIndicator.show();
                 var table = that.byId("idChars");
-                var selectedLoc = that.byId("PDFlocInput").getValue();
+                // var selectedLoc = that.byId("PDFlocInput").getValue();
                 var selectedProd1 = that.byId("PDFprodInput").getTokens()[0];
                 if (
-                    selectedLoc !== undefined &&
-                    selectedLoc !== "" &&
+                    // selectedLoc !== undefined &&
+                    // selectedLoc !== "" &&
                     selectedProd1 !== undefined &&
                     selectedProd1 !== "") {
                     var selectedProd = that.byId("PDFprodInput").getTokens()[0].getText();
-                    var selectedLoc = that.byId("PDFlocInput").getValue();
+                    // var selectedLoc = that.byId("PDFlocInput").getValue();
                     that.getOwnerComponent().getModel("BModel").read("/getLocProdSalesH", {
                         method: "GET",
                         urlParameters: {
                             Flag: "Y",
-                            LOCATION_ID:selectedLoc,
                             PRODUCT_ID:selectedProd
                         },
                         success: function (oData) {
@@ -236,7 +244,7 @@ sap.ui.define([
                                 table.setModel(that.oTabtModel);                              
                             }
                             else{
-                                sap.m.MessageToast.show("No ID's for selected Location/Product");
+                                sap.m.MessageToast.show("No ID's for selected Product");
                                 that.oTabtModel.setData({setChars:[]});
                                 table.setModel(that.oTabtModel);   
                             }
@@ -251,7 +259,7 @@ sap.ui.define([
                 }
                 else {
                     sap.ui.core.BusyIndicator.hide();
-                    MessageToast.show("Please Select Location/Configurable Product");
+                    MessageToast.show("Please Select Product");
                 }
             },
             onNavPress: function () {

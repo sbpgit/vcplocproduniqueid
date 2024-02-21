@@ -33,10 +33,10 @@
                 <Label text="" />
                  <SearchField id="headtabSearch" liveChange="handleSearch" placeholder="Unique/Primary ID" width="300px"/>     
                 </VBox>
-                    <VBox class="locClass">
-                        <Label text="Demand Location" required="true" width="250px"/>
+                    <!-- <VBox class="locClass">
+                        <Label text="Demand Location" required="false" width="250px"/>
                         <Input id="PDFlocInput" width="250px" placeholder="Location" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="handleValueHelp" />
-                    </VBox>
+                    </VBox> -->
                     <VBox class="VBoxWidth">
                         <Label text="All Products" required="true" width="300px"/>
                          <MultiInput width="300px" id="PDFprodInput" placeholder="Product" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="handleValueHelp" tokenUpdate="handleTokenUpdate" enabled="true" />
