@@ -204,7 +204,9 @@ sap.ui.define([
                     });
                     that.oTabtModel.setData({setChars:[]});
                     that.byId("idChars").setModel(that.oTabtModel); 
+                    that.selectedRefProd = oEvent.getParameters().selectedItems[0].getInfo();
                     sap.ui.core.BusyIndicator.hide();
+                    sap.ui.getCore().byId("prodSlctListJS").getBinding("items").filter([]);
                 }
             },
             onCancelPress: function () {
@@ -225,12 +227,19 @@ sap.ui.define([
                     selectedProd1 !== undefined &&
                     selectedProd1 !== "") {
                     var selectedProd = that.byId("PDFprodInput").getTokens()[0].getText();
+                    var refProd = that.selectedRefProd;
+                    if(selectedProd === refProd){
+                        var FLAG = "Z";
+                    }
+                    else{
+                        var FLAG ="Y";
+                    }
                     // var selectedLoc = that.byId("PDFlocInput").getValue();
                     that.getOwnerComponent().getModel("BModel").read("/getLocProdSalesH", {
                         method: "GET",
                         // filters: [new Filter("PRODUCT_ID", FilterOperator.EQ, selectedProd)],
                         urlParameters: {
-                            Flag: "Y",
+                            Flag: FLAG,
                             PRODUCT_ID:selectedProd
                         },
                         success: function (oData) {
