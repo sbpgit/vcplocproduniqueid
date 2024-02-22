@@ -44,11 +44,11 @@
                     <HBox class="VBoxWidth1">
                     <VBox >
                         <Label text="" />
-                           <Button id="idBtnSubmit" visible="true" type="Emphasized" text="Submit"  press="onSubmitPress" width="auto" enabled="true" /> 
+                           <Button id="idBtnSubmit" visible="true" type="Emphasized" text="Go"  press="onSubmitPress" width="auto" enabled="true" /> 
                     </VBox>
                     <VBox >
                         <Label text="" />
-                            <Button id="idBtnReject" visible="true" type="Reject" text="Reset" class="rejectbtn" press="onCancelPress" width="auto" enabled="true" />
+                            <Button id="idBtnReject" visible="true" type="Default" text="Reset" class="rejectbtn" press="onCancelPress" width="auto" enabled="true" />
                     </VBox>
                     </HBox>
                     </HBox>
