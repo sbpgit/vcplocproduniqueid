@@ -216,6 +216,7 @@ sap.ui.define([
                 that.byId("idChars").setModel(that.oTabtModel);
                 that.byId("headtabSearch").setValue();
             },
+            //on press of submit
             onSubmitPress: function () {
                 sap.ui.core.BusyIndicator.show();
                 var table = that.byId("idChars");
