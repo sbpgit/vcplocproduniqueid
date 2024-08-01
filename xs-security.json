@@ -48,6 +48,20 @@
       "scope-references": [
         "$XSAPPNAME.admin"
       ]
+    },
+    {
+      "name": "VCPSBPSupport",
+      "description": "UAA VCPSBPSupport",
+      "scope-references": [
+        "$XSAPPNAME.admin"
+      ]
+    },
+    {
+      "name": "VCPSBPAdmin",
+      "description": "UAA VCPSBPAdmin",
+      "scope-references": [
+        "$XSAPPNAME.admin"
+      ]
     }
   ],
   "oauth2-configuration": {
