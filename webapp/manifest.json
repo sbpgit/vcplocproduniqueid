@@ -30,6 +30,7 @@
       "inbounds": {
         "LocProdID-Display": {
           "semanticObject": "LocProdID",
+          "icon" :"sap-icon://map-3",
           "action": "Display",
           "title": "{{flpTitle}}",
           "signature": {
@@ -43,7 +44,7 @@
   "sap.ui": {
     "technology": "UI5",
     "icons": {
-      "icon": "",
+      "icon": "sap-icon://map-3",
       "favIcon": "",
       "phone": "",
       "phone@2": "",
