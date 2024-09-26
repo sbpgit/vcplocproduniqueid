@@ -50,19 +50,34 @@
       ]
     },
     {
-      "name": "VCPSBPSupport",
-      "description": "UAA VCPSBPSupport",
+      "name": "VCPConfigurationRole",
+      "description": "UAA VCPConfigurationRole",
       "scope-references": [
         "$XSAPPNAME.admin"
       ]
     },
     {
-      "name": "VCPSBPAdmin",
-      "description": "UAA VCPSBPAdmin",
+      "name": "VCPSupport",
+      "description": "UAA VCPSupport",
+      "scope-references": [
+        "$XSAPPNAME.admin"
+      ]
+    },
+    {
+      "name": "VCPAdmin",
+      "description": "UAA VCPAdmin",
+      "scope-references": [
+        "$XSAPPNAME.admin"
+      ]
+    },
+    {
+      "name": "VCPConfiguration",
+      "description": "UAA VCPConfiguration",
       "scope-references": [
         "$XSAPPNAME.admin"
       ]
     }
+    
   ],
   "oauth2-configuration": {
     "token-validity": 3600,
