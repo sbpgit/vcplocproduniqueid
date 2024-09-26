@@ -152,7 +152,8 @@
   "sap.platform.cf": {
     "oAuthScopes": [
         "$XSAPPNAME.User",
-        "$XSAPPNAME.Support"
+        "$XSAPPNAME.Support",
+         "$XSAPPNAME.admin"
     ],
     "ui5VersionNumber": "1.117.1"
 }

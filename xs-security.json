@@ -39,45 +39,9 @@
       "name": "VCPSupportRole",
       "description": "UAA VCPSupportRole",
       "scope-references": [
-        "$XSAPPNAME.read"
-      ]
-    },
-    {
-      "name": "VCPSupportAdminRole",
-      "description": "UAA VCPSupportAdminRole",
-      "scope-references": [
         "$XSAPPNAME.admin"
       ]
-    },
-    {
-      "name": "VCPConfigurationRole",
-      "description": "UAA VCPConfigurationRole",
-      "scope-references": [
-        "$XSAPPNAME.admin"
-      ]
-    },
-    {
-      "name": "VCPSupport",
-      "description": "UAA VCPSupport",
-      "scope-references": [
-        "$XSAPPNAME.admin"
-      ]
-    },
-    {
-      "name": "VCPAdmin",
-      "description": "UAA VCPAdmin",
-      "scope-references": [
-        "$XSAPPNAME.admin"
-      ]
-    },
-    {
-      "name": "VCPConfiguration",
-      "description": "UAA VCPConfiguration",
-      "scope-references": [
-        "$XSAPPNAME.admin"
-      ]
-    }
-    
+    }  
   ],
   "oauth2-configuration": {
     "token-validity": 3600,
