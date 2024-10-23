@@ -127,7 +127,7 @@ sap.ui.define([
             },
             onProductSelect: function () {
                 var topCount = that.oGModel.getProperty("/MaxCount");
-                
+
                 this.getOwnerComponent().getModel("BModel").read("/genPartialProd", {
                     urlParameters: {
                         "$skip": that.skip,
@@ -292,7 +292,7 @@ sap.ui.define([
                 sap.ui.core.BusyIndicator.show();
                 that.onGo();
             },
-
+            // when click on go this function excutes
             onGo: function () {
                 var table = that.byId("idChars");
                 // var selectedLoc = that.byId("PDFlocInput").getValue();
