@@ -7,10 +7,10 @@
     <Dialog title="Characteristics" contentWidth="400px" titleAlignment="Center">
     <HBox >
         <OverflowToolbar>           
-                    <SearchField id="idCharSearch" liveChange="handleSearch" placeholder="Characteristic / Characteristic Value" width="375px"/>               
+                    <SearchField id="idCharSearchLPU" liveChange="handleSearch" placeholder="Characteristic / Characteristic Value" width="375px"/>               
                     </OverflowToolbar>
                     </HBox>
-    <Table id="idMatvarItem" items="{path: '/resultsChar'}" rememberSelections="false"  sticky="ColumnHeaders">
+    <Table id="idMatvarItemLPU" items="{path: '/resultsChar'}" rememberSelections="false"  sticky="ColumnHeaders">
                         <columns>
                         <Column hAlign="Center" >
                                 <Text text="Characteristic Name" />

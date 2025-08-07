@@ -31,7 +31,7 @@ sap.ui.define([
             onAfterRendering: function () {
                 sap.ui.core.BusyIndicator.show();
                 // that.oLoc = this.byId("PDFlocInput");
-                that.oProd = this.byId("PDFprodInput");
+                that.oProd = this.byId("PDFprodInputLPU");
                 // Declaring fragments
                 this._oCore = sap.ui.getCore();
                 if (!this._valueHelpDialogLoc) {
@@ -105,7 +105,7 @@ sap.ui.define([
                 if (sId.includes("PDFlocInput")) {
                     that._valueHelpDialogLoc.open();
                 }
-                else if (sId.includes("PDFprodInput")) {
+                else if (sId.includes("PDFprodInputLPU")) {
                     sap.ui.core.BusyIndicator.show();
                     that.onProductSelect();
                     //  let aData = that.totalData;
@@ -113,7 +113,7 @@ sap.ui.define([
                     // that.prodModel.setData({ prodDetails: that.prodData });
                     // that.oProductList.setModel(that.prodModel);
                     // that.oTabtModel.setData({ setChars: [] });
-                    // that.byId("idChars").setModel(that.oTabtModel);
+                    // that.byId("idCharsLPU").setModel(that.oTabtModel);
                     // sap.ui.core.BusyIndicator.hide();
                     // if (this.byId("PDFlocInput").getValue()) {
                     //     that._valueHelpDialogProd.open();
@@ -146,7 +146,7 @@ sap.ui.define([
                             that.prodModel.setData({ prodDetails: that.prodData });
                             that.oProductList.setModel(that.prodModel);
                             that.oTabtModel.setData({ setChars: [] });
-                            that.byId("idChars").setModel(that.oTabtModel);
+                            that.byId("idCharsLPU").setModel(that.oTabtModel);
                             sap.ui.core.BusyIndicator.hide();
                             that._valueHelpDialogProd.open();
                         }
@@ -178,7 +178,7 @@ sap.ui.define([
                             })
                         );
                     }
-                    that.byId("idChars").getBinding("items").filter(oFilters);
+                    that.byId("idCharsLPU").getBinding("items").filter(oFilters);
                 }
                 // Location
                 else if (sId.includes("Loc")) {
@@ -208,7 +208,7 @@ sap.ui.define([
                             })
                         );
                     }
-                    that.byId("idChars").getBinding("items").filter(oFilters);
+                    that.byId("idCharsLPU").getBinding("items").filter(oFilters);
                 }
                 // Product
                 else if (sId.includes("prod")) {
@@ -225,7 +225,7 @@ sap.ui.define([
                     }
                     that.oProductList.getBinding("items").filter(oFilters);
                 }
-                else if (sId.includes("idCharSearch")) {
+                else if (sId.includes("idCharSearchLPU")) {
                     if (sQuery !== "") {
                         oFilters.push(
                             new Filter({
@@ -239,13 +239,13 @@ sap.ui.define([
                             })
                         );
                     }
-                    sap.ui.getCore().byId("idMatvarItem").getBinding("items").filter(oFilters);
+                    sap.ui.getCore().byId("idMatvarItemLPU").getBinding("items").filter(oFilters);
                 }
             },
             handleSelection: function (oEvent) {
                 sap.ui.core.BusyIndicator.show();
                 var SID = oEvent.getSource().getId();
-                // if (SID.includes("LocSlctListJS")) {
+                // if (SID.includes("LocSlctListLPU")) {
                 //     that.oProd.removeAllTokens();
                 //     var aSelectedLoc = oEvent.getParameter("selectedItems");
                 //     that.oLoc.setValue(aSelectedLoc[0].getTitle());
@@ -254,11 +254,11 @@ sap.ui.define([
                 //             that.prodModel.setData({ prodDetails: that.prodData });
                 //             that.oProductList.setModel(that.prodModel);
                 //             that.oTabtModel.setData({setChars:[]});
-                //             that.byId("idChars").setModel(that.oTabtModel); 
+                //             that.byId("idCharsLPU").setModel(that.oTabtModel); 
                 //             sap.ui.core.BusyIndicator.hide();
                 // }
                 // else
-                if (SID.includes("prodSlctListJS")) {
+                if (SID.includes("prodSlctListLPU")) {
                     var aSelectedProd;
                     aSelectedProd = oEvent.getParameter("selectedItems");
                     that.oProd.removeAllTokens();
@@ -273,18 +273,18 @@ sap.ui.define([
                         );
                     });
                     that.oTabtModel.setData({ setChars: [] });
-                    that.byId("idChars").setModel(that.oTabtModel);
+                    that.byId("idCharsLPU").setModel(that.oTabtModel);
                     that.selectedRefProd = oEvent.getParameters().selectedItems[0].getInfo();
                     sap.ui.core.BusyIndicator.hide();
-                    sap.ui.getCore().byId("prodSlctListJS").getBinding("items").filter([]);
+                    sap.ui.getCore().byId("prodSlctListLPU").getBinding("items").filter([]);
                 }
             },
             onCancelPress: function () {
                 // that.oLoc.setValue();
                 that.oProd.removeAllTokens();
                 that.oTabtModel.setData({ setChars: [] });
-                that.byId("idChars").setModel(that.oTabtModel);
-                that.byId("headtabSearch").setValue();
+                that.byId("idCharsLPU").setModel(that.oTabtModel);
+                that.byId("headtabSearchLPU").setValue();
             },
             //on press of submit
             onSubmitPress: function () {
@@ -294,16 +294,16 @@ sap.ui.define([
             },
             // when click on go this function excutes
             onGo: function () {
-                var table = that.byId("idChars");
+                var table = that.byId("idCharsLPU");
                 // var selectedLoc = that.byId("PDFlocInput").getValue();
-                var selectedProd1 = that.byId("PDFprodInput").getTokens()[0];
+                var selectedProd1 = that.byId("PDFprodInputLPU").getTokens()[0];
                 var topCount = that.oGModel.getProperty("/MaxCount");
                 if (
                     // selectedLoc !== undefined &&
                     // selectedLoc !== "" &&
                     selectedProd1 !== undefined &&
                     selectedProd1 !== "") {
-                    var selectedProd = that.byId("PDFprodInput").getTokens()[0].getText();
+                    var selectedProd = that.byId("PDFprodInputLPU").getTokens()[0].getText();
                     var refProd = that.selectedRefProd;
                     if (selectedProd === refProd) {
                         var FLAG = "Z";
@@ -382,7 +382,7 @@ sap.ui.define([
                 sap.ui.core.BusyIndicator.show();
                 // var selectedItem = oEvent.getParameters().listItems[0].getCells()[1].getTitle();
                 var selectedItem = oEvent.getSource().getText();
-                var selectedProduct = that.byId("PDFprodInput").getTokens()[0].getText();
+                var selectedProduct = that.byId("PDFprodInputLPU").getTokens()[0].getText();
                 that.getOwnerComponent().getModel("BModel").read("/getUniqueItem", {
                     filters: [
                         // new Filter("LOCATION_ID", FilterOperator.EQ, sLocId),
@@ -401,7 +401,7 @@ sap.ui.define([
                             );
                             that.getView().addDependent(that._valueHelpDialogChar);
                         }
-                        sap.ui.getCore().byId("idMatvarItem").setModel(that.oCharModel);
+                        sap.ui.getCore().byId("idMatvarItemLPU").setModel(that.oCharModel);
                         that._valueHelpDialogChar.open();
                         sap.ui.core.BusyIndicator.hide();
                     },
@@ -412,10 +412,10 @@ sap.ui.define([
                 });
             },
             onCloseDesc: function () {
-                sap.ui.getCore().byId("idCharSearch").setValue("");
+                sap.ui.getCore().byId("idCharSearchLPU").setValue("");
                 that._valueHelpDialogChar.destroy();
                 that._valueHelpDialogChar = "";
-                that.byId("idChars").removeSelections();
+                that.byId("idCharsLPU").removeSelections();
             }
         });
     });

@@ -5,9 +5,9 @@
     xmlns:f="sap.ui.layout.form" 
     xmlns:html="http://www.w3.org/1999/xhtml" 
     xmlns:u = "sap.ui.unified">
-    <Page id="_IDGenPage1" showHeader="false" showFooter="true" enableScrolling="false">
+    <Page id="_IDGenPage1LPU" showHeader="false" showFooter="true" enableScrolling="false">
         <content>
-   <ux:ObjectPageLayout id="ObjectPageLayout" headerContentPinned="true">
+   <ux:ObjectPageLayout id="ObjectPageLayoutLPU" headerContentPinned="true">
         <ux:headerTitle>
             <ux:ObjectPageDynamicHeaderTitle>
                 <ux:expandedHeading>
@@ -21,7 +21,7 @@
                     </HBox>
                 </ux:snappedHeading>
                 <ux:navigationActions>
-                            <Button class="classHdr" icon="sap-icon://sys-help" id="idNav3" press="onNavPress" type="Emphasized" tooltip="Help Document" />
+                            <Button class="classHdr" icon="sap-icon://sys-help" id="idNav3LPU" press="onNavPress" type="Emphasized" tooltip="Help Document" />
                         </ux:navigationActions>
             </ux:ObjectPageDynamicHeaderTitle>
         </ux:headerTitle>
@@ -31,7 +31,7 @@
                 <HBox>
                 <VBox>
                 <Label text="" />
-                 <SearchField id="headtabSearch" liveChange="handleSearch" placeholder="Unique/Primary ID" width="300px"/>     
+                 <SearchField id="headtabSearchLPU" liveChange="handleSearch" placeholder="Unique/Primary ID" width="300px"/>     
                 </VBox>
                     <!-- <VBox class="locClass">
                         <Label text="Demand Location" required="false" width="250px"/>
@@ -39,16 +39,16 @@
                     </VBox> -->
                     <VBox class="VBoxWidth">
                         <Label text="All Products" required="true" width="300px"/>
-                         <MultiInput width="300px" id="PDFprodInput" placeholder="Product" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="handleValueHelp" tokenUpdate="handleTokenUpdate" enabled="true" />
+                         <MultiInput width="300px" id="PDFprodInputLPU" placeholder="Product" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="handleValueHelp" tokenUpdate="handleTokenUpdate" enabled="true" />
                     </VBox>
                     <HBox class="VBoxWidth1">
                     <VBox >
                         <Label text="" />
-                           <Button id="idBtnSubmit" visible="true" type="Emphasized" text="Go"  press="onSubmitPress" width="auto" enabled="true" /> 
+                           <Button id="idBtnSubmitLPU" visible="true" type="Emphasized" text="Go"  press="onSubmitPress" width="auto" enabled="true" /> 
                     </VBox>
                     <VBox >
                         <Label text="" />
-                            <Button id="idBtnReject" visible="true" type="Default" text="Reset" class="rejectbtn" press="onCancelPress" width="auto" enabled="true" />
+                            <Button id="idBtnRejectLPU" visible="true" type="Default" text="Reset" class="rejectbtn" press="onCancelPress" width="auto" enabled="true" />
                     </VBox>
                     </HBox>
                     </HBox>
@@ -60,15 +60,15 @@
                 <ux:subSections>
                     <ux:ObjectPageSubSection>
                         <ux:blocks>
-                    <Table id="idChars" items="{path: '/setChars',sorter:{path:'PRIMARY_ID',group:true} }" sticky="ColumnHeaders" 
+                    <Table id="idCharsLPU" items="{path: '/setChars',sorter:{path:'PRIMARY_ID',group:true} }" sticky="ColumnHeaders" 
                     rememberSelections="false" growingThreshold="1000" growingScrollToLoad="true" growing="true" 
                     mode="None" >
                     <columns>
-                     <Column id="_IDGenColumn22" hAlign="Center" vAlign="Middle" >
-                        <Text id="_IDGenText22" text="Primary ID"/>
+                     <Column id="_IDGenColumn22LPU" hAlign="Center" vAlign="Middle" >
+                        <Text id="_IDGenText22LPU" text="Primary ID"/>
                     </Column>
-                    <Column id="_IDGenColumn11" hAlign="Center" vAlign="Middle">
-                        <Text id="_IDGenText11" text="Unique ID" />
+                    <Column id="_IDGenColumn11LPU" hAlign="Center" vAlign="Middle">
+                        <Text id="_IDGenText11LPU" text="Unique ID" />
                     </Column>
                    
                      <!-- <Column id="_IDGenColumn23" hAlign="Center" vAlign="Middle">
@@ -76,7 +76,7 @@
                     </Column> -->
                 </columns>
                 <items>
-                    <ColumnListItem id="_IDGenColumnListItem11">
+                    <ColumnListItem id="_IDGenColumnListItem11LPU">
                         <cells>
                         <Link  text="{PRIMARY_ID}" press="onUniqueIdPress"/>
                         <VBox>
